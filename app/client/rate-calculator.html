@@ -7,12 +7,21 @@
 </body>
 
 <template name="rate">
-  <h1>小额贷款利率计算</h1>
-  <h2>起始日期：{{startDate}}</h2>
-  <h2>结息日期：{{endDate}}</h2>
-  <h2>时长：{{dayLength}}天</h2>
-  <h2>本金：{{base}}元</h2>
-  <h2>利率：{{rate}}%</h2>
-  <h2>利息：{{interest}}元</h2>
-  <h2>总金额：{{total}}元</h2>
+  <h1>小额贷款利息详情</h1>
+  <div id="board">
+    借款人：<input type="text" id="name">
+    <br/>
+    本　金：<input type="number" id="base" value="0">元
+    <br/>
+    利　率：<input type="number" id="rate" value="2">%
+    <br/>
+    借款日：<input id="startdate" class="picker"> 到期日：<input id="enddate" class="picker">
+    <br/>
+    时　长：{{dayLength}}天
+    <br/>
+    利　息：{{interest}}元
+    <br/>
+    总金额：{{total}}元
+    <br/>
+  </div>
 </template>

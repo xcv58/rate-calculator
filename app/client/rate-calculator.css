@@ -1,1 +1,27 @@
 /* CSS declarations go here */
+.h2 {
+    font-size: 32px;
+}
+
+#board {
+    font-size: 28px;
+}
+
+.picker {
+    font-size: 28px;
+    font-family: sans-serif;
+    width: 280px;
+    position: relative;
+    display: inline;
+}
+
+input {
+    font-size: 28px;
+    text-align: right;
+    max-width: 400px;
+    width: 200px;
+}
+
+.picker__holder {
+    min-width: 360px;
+}
