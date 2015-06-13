@@ -1,0 +1,18 @@
+<head>
+  <title>小额贷款利率计算</title>
+</head>
+
+<body>
+  {{> rate}}
+</body>
+
+<template name="rate">
+  <h1>小额贷款利率计算</h1>
+  <h2>起始日期：{{startDate}}</h2>
+  <h2>结息日期：{{endDate}}</h2>
+  <h2>时长：{{dayLength}}</h2>
+  <h2>本金：{{base}}</h2>
+  <h2>利率：{{rate}}</h2>
+  <h2>利息：{{interest}}</h2>
+  <h2>总金额：{{total}}</h2>
+</template>
