@@ -3,21 +3,21 @@ Template.rate.helpers({
     return 1;
   },
   endDate: function() {
-    return 2;
+    return 30;
   },
   dayLength: function() {
-    return 3;
+    return 30;
   },
   base: function() {
-    return '本金';
+    return 10000;
   },
   rate: function() {
-    return '利率';
+    return 2;
   },
   interest: function() {
-    return '利息';
+    return 200;
   },
   total: function() {
-    return '总金额';
+    return 10200;
   }
 });
