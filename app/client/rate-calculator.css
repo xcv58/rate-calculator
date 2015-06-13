@@ -24,4 +24,5 @@ input {
 
 .picker__holder {
     min-width: 360px;
+    position: relative;
 }
