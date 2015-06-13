@@ -19,10 +19,20 @@ input {
     font-size: 28px;
     text-align: right;
     max-width: 400px;
-    width: 200px;
+    width: 128px;
 }
 
 .picker__holder {
     min-width: 360px;
     position: relative;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
 }
