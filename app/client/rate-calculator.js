@@ -19,10 +19,8 @@ Template.rate.onRendered(function () {
     selectMonths: true,
     selectYears: true,
     onSet: function(context) {
-      console.log(context.select);
-      var pivot = Session.get('pivot');
       Session.set('start', context.select);
-      $('#enddate').show();
+      update();
     }
   });
   $('#enddate').pickadate({
@@ -40,21 +38,8 @@ Template.rate.onRendered(function () {
     selectMonths: true,
     selectYears: true,
     onSet: function(context) {
-      console.log(context.select);
       Session.set('end', context.select);
-
-      var start = Session.get('start');
-      var end = Session.get('end');
-      if (start === 0 || end === 0) {
-        console.log('skip');
-      } else {
-        var len = start - end;
-        var days = len / 1000 / 3600 / 24;
-        days = Math.abs(days);
-        Session.set('dayLength', days);
-        console.log(days);
-        update();
-      }
+      update();
     }
   });
 });
@@ -81,25 +66,20 @@ Template.rate.events({
 function update() {
   var rate = Number($('#rate').val());
   var base = Number($('#base').val());
-  console.log('rate: ' + rate);
-  console.log('base: ' + base);
 
   var start = Session.get('start');
   var end = Session.get('end');
   if (start === 0 || end === 0) {
-    console.log('skip');
     return;
   } else {
     var len = end - start;
     var days = len / 1000 / 3600 / 24;
     days = Math.abs(days);
     Session.set('dayLength', days);
-    console.log(days);
   }
   var interest = Session.get('dayLength') * rate * base / 100 / 30;
   interest = Math.round(interest * Math.pow(10, 2)) / Math.pow(10, 2);
   var total = base + interest;
-  console.log("toatal: " + total);
   Session.set('interest', interest);
   Session.set('total', total);
 };
