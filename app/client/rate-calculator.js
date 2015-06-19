@@ -1,4 +1,5 @@
 Session.setDefault('interest', 0);
+Session.setDefault('total', 0);
 Session.setDefault('dayLength', 0);
 Session.setDefault('start', 0);
 Session.setDefault('end', 0);
@@ -42,30 +43,43 @@ Template.rate.onRendered(function () {
       update();
     }
   });
+  update();
 });
 
 Template.rate.helpers({
   dayLength: function() {
     return Session.get('dayLength');
   },
+  chineseBase: function() {
+    return numberToChinese(Session.get('base'));
+  },
   interest: function() {
     return Session.get('interest');
   },
+  chineseInterest: function() {
+    return numberToChinese(Session.get('interest'));
+  },
   total: function() {
     return Session.get('total');
+  },
+  chineseTotal: function() {
+    return numberToChinese(Session.get('total'));
   }
 });
 
 Template.rate.events({
   "click #board": function (event, template) {
     update();
+  },
+  'keyup input': function(event) {
+    update();
   }
 });
-
 
 function update() {
   var rate = Number($('#rate').val());
   var base = Number($('#base').val());
+  Session.set('base', base);
 
   var start = Session.get('start');
   var end = Session.get('end');
@@ -83,3 +97,18 @@ function update() {
   Session.set('interest', interest);
   Session.set('total', total);
 };
+
+function numberToChinese(n) {
+  if (!/^(0|[1-9]\d*)(\.\d+)?$/.test(n))
+    return "数据非法";
+  var unit = "千百拾亿千百拾万千百拾元角分", str = "";
+  n += "00";
+  var p = n.indexOf('.');
+  if (p >= 0) {
+    n = n.substring(0, p) + n.substr(p + 1, 2);
+  }
+  unit = unit.substr(unit.length - n.length);
+  for (var i=0; i < n.length; i++)
+    str += '零壹贰叁肆伍陆柒捌玖'.charAt(n.charAt(i)) + unit.charAt(i);
+  return str.replace(/零(千|百|拾|角)/g, "零").replace(/(零)+/g, "零").replace(/零(万|亿|元)/g, "$1").replace(/(亿)万|壹(拾)/g, "$1$2").replace(/^元零?|零分/g, "").replace(/元$/g, "元整");
+}
