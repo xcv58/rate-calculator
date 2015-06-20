@@ -5,7 +5,8 @@
 
 .picker {
     font-size: 28px;
-    width: 280px;
+    text-align: right;
+    width: 256px;
     position: relative;
     display: inline;
 }
@@ -14,8 +15,9 @@ input {
     font-size: 28px;
     text-align: right;
     max-width: 400px;
-    width: 128px;
-    border: 0px solid;
+    width: 148px;
+    border-width: 0px 0px 1px 0px;
+    border-style: solid;
 }
 
 input:focus {
@@ -37,6 +39,7 @@ input[type=number] {
     -moz-appearance:textfield;
 }
 
-.unclickable {
+.disabled {
     pointer-events: none;
+    color: black;
 }

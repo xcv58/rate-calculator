@@ -73,7 +73,7 @@ Template.rate.events({
     var id = event.currentTarget.id;
     if (id === 'total') {
       Session.set('part', true);
-    } else {
+    } else if (id === 'base') {
       Session.set('part', false);
     }
     update();
@@ -104,17 +104,17 @@ function update() {
     interest = scale * total / (1 + scale);
     interest = Math.round(interest * Math.pow(10, 2)) / Math.pow(10, 2);
     base = total - interest;
+    Session.set('base', base);
+    $('#base').val(base);
   } else {
     interest = base * scale;
     interest = Math.round(interest * Math.pow(10, 2)) / Math.pow(10, 2);
     total = base + interest;
+    Session.set('total', total);
+    $('#total').val(total);
   }
   Session.set('interest', interest);
   $('#interest').val(interest);
-  Session.set('base', base);
-  $('#base').val(base);
-  Session.set('total', total);
-  $('#total').val(total);
 };
 
 function numberToChinese(n) {
