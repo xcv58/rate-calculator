@@ -3,6 +3,7 @@ Session.setDefault('total', 0);
 Session.setDefault('dayLength', 0);
 Session.setDefault('start', 0);
 Session.setDefault('end', 0);
+Session.setDefault('part', false);
 
 Template.rate.onRendered(function () {
   $('#startdate').pickadate({
@@ -68,17 +69,22 @@ Template.rate.helpers({
 });
 
 Template.rate.events({
-  "click #board": function (event, template) {
-    update();
-  },
   'keyup input': function(event) {
+    var id = event.currentTarget.id;
+    if (id === 'total') {
+      Session.set('part', true);
+    } else {
+      Session.set('part', false);
+    }
     update();
   }
 });
 
 function update() {
+  var part = Session.get('part');
   var rate = Number($('#rate').val());
   var base = Number($('#base').val());
+  var total = Number($('#total').val());
   Session.set('base', base);
 
   var start = Session.get('start');
@@ -90,12 +96,25 @@ function update() {
     var days = len / 1000 / 3600 / 24;
     days = Math.abs(days);
     Session.set('dayLength', days);
+    $('#dayLength').val(days);
   }
-  var interest = Session.get('dayLength') * rate * base / 100 / 30;
-  interest = Math.round(interest * Math.pow(10, 2)) / Math.pow(10, 2);
-  var total = base + interest;
+  var scale = Session.get('dayLength') * rate / 100 / 30;
+  var interest = 0;
+  if (part === true) {
+    interest = scale * total / (1 + scale);
+    interest = Math.round(interest * Math.pow(10, 2)) / Math.pow(10, 2);
+    base = total - interest;
+  } else {
+    interest = base * scale;
+    interest = Math.round(interest * Math.pow(10, 2)) / Math.pow(10, 2);
+    total = base + interest;
+  }
   Session.set('interest', interest);
+  $('#interest').val(interest);
+  Session.set('base', base);
+  $('#base').val(base);
   Session.set('total', total);
+  $('#total').val(total);
 };
 
 function numberToChinese(n) {

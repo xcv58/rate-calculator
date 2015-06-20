@@ -17,11 +17,11 @@
     <br/>
     借款日：<input id="startdate" class="picker">
     还款日：<input id="enddate" class="picker">
-    时　长：{{dayLength}}天
+    时　长：<input id="dayLength" class="unclickable">天
     <br/>
-    利　息：{{interest}}元，{{chineseInterest}}
+    利　息：<input id="interest" class="unclickable">元，{{chineseInterest}}
     <br/>
-    总金额：{{total}}元，{{chineseTotal}}
+    总金额：<input type="number" id="total" value="0">元，{{chineseTotal}}
     <br/>
   </div>
 </template>
