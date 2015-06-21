@@ -86,6 +86,7 @@ function update() {
   var base = Number($('#base').val());
   var total = Number($('#total').val());
   Session.set('base', base);
+  Session.set('total', total);
 
   var start = Session.get('start');
   var end = Session.get('end');
