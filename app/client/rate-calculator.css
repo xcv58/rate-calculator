@@ -14,8 +14,9 @@
 input {
     font-size: 28px;
     text-align: right;
-    max-width: 400px;
-    width: 148px;
+    max-width: 256px;
+    min-width: 128px;
+    padding-right: 4px;
     border-width: 0px 0px 1px 0px;
     border-style: solid;
 }
@@ -42,4 +43,5 @@ input[type=number] {
 .disabled {
     pointer-events: none;
     color: black;
+    border-style:dashed;
 }
