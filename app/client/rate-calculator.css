@@ -22,7 +22,7 @@ input {
 }
 
 input:focus {
-    outline:none;
+    outline: none;
 }
 
 .picker__holder {
@@ -43,5 +43,5 @@ input[type=number] {
 .disabled {
     pointer-events: none;
     color: black;
-    border-style:dashed;
+    border-style: dashed;
 }
