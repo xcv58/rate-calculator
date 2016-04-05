@@ -6,12 +6,13 @@ dependencies:
 
 test:
   override:
-    - cd app && meteor build ../output --architecture os.linux.x86_64
+    # - cd app && meteor build ../output --architecture os.linux.x86_64
+    - cd app
 
 deployment:
   production:
     branch: "master"
     commands:
       - npm install -g pm2-meteor
-      - scp -P 26771 xcv58@band.xcv58.com:id_rsa ./
+      - scp -P 26771 xcv58@band.xcv58.com:id_rsa ./deploy/
       - cd deploy && pm2-meteor deploy
