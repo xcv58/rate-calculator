@@ -12,4 +12,7 @@ deployment:
   production:
     branch: "master"
     commands:
-      - ssh xcv58@band.xcv58.com -p 26771
+      - npm install -g pm2-meteor
+      - cd deploy
+      - scp -P 26771 xcv58@band.xcv58.com:app.tar.gz ./
+      - pm2-meteor deploy
