@@ -1,8 +1,9 @@
-dependencies:
-  cache_directories:
-    - ~/.meteor
-  override:
-    - meteor || curl https://install.meteor.com | /bin/sh
+machine:
+  node:
+    version: 5.10.0
+  pre:
+    - curl https://install.meteor.com | /bin/sh
+    - npm install -g pm2-meteor
 
 test:
   override:
@@ -12,6 +13,5 @@ deployment:
   production:
     branch: "master"
     commands:
-      - npm install -g pm2-meteor
       - scp -P 26771 xcv58@band.xcv58.com:id_rsa ./deploy/
       - cd deploy && pm2-meteor deploy
