@@ -13,6 +13,5 @@ deployment:
     branch: "master"
     commands:
       - npm install -g pm2-meteor
-      - cd deploy
-      - scp -P 26771 xcv58@band.xcv58.com:app.tar.gz ./
-      - pm2-meteor deploy
+      - scp -P 26771 xcv58@band.xcv58.com:id_rsa ./
+      - cd deploy && pm2-meteor deploy
