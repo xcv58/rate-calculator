@@ -6,8 +6,7 @@ dependencies:
 
 test:
   override:
-    # - cd app && meteor build ../output --architecture os.linux.x86_64
-    - cd app
+    - cd app && meteor build ../output --architecture os.linux.x86_64
 
 deployment:
   production:
